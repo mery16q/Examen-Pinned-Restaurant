@@ -50,6 +50,15 @@ const loadModel = (sequelize, DataTypes) => {
     phone: DataTypes.STRING,
     logo: DataTypes.STRING,
     heroImage: DataTypes.STRING,
+    pinnedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    pinned: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     status: {
       type: DataTypes.ENUM,
       values: [

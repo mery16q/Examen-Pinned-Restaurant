@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native'
+import { Image, Platform, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native'
 import * as ExpoImagePicker from 'expo-image-picker'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import * as yup from 'yup'
@@ -204,6 +204,16 @@ export default function CreateRestaurantScreen ({ navigation }) {
                 <Image style={styles.image} source={values.heroImage ? { uri: values.heroImage.assets[0].uri } : restaurantBackground} />
               </Pressable>
 
+            <TextRegular style={styles.switch}>Pin restaurant?</TextRegular>
+            <Switch
+              trackColor={{ false: GlobalStyles.brandSecondary, true: GlobalStyles.brandPrimary }}
+              thumbColor={values.pinned ? GlobalStyles.brandSecondary : '#f4f3f4'}
+              value={values.pinned}
+              style={styles.switch}
+              onValueChange={value =>
+                setFieldValue('pinned', value)
+            }
+              />
               {backendErrors &&
                 backendErrors.map((error, index) => <TextError key={index}>{error.param}-{error.msg}</TextError>)
               }
@@ -260,5 +270,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignSelf: 'center',
     marginTop: 5
+  },
+  switch: {
+    marginTop: 20
   }
 })
